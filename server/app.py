@@ -92,6 +92,7 @@ def quote():
         quote = request.get_json()
     except Exception, e:
         print str(e)
+        pprint(request)
         raise
 
     print 'raw data:'
