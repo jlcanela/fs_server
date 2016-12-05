@@ -11,7 +11,7 @@ COVERS = {
     'premium': 4.2,
 }
 COUNTRIES = {
-    'poland': 1.4,
+    'pl': 1.4,
 }
 
 app = Flask(__name__)
