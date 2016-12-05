@@ -15,7 +15,8 @@ class OrderException(Exception): pass
 def get_quote(order):
     try:
         value = 1.8 * order['nb_days'] * order['nb_travelers']
-    except Exception:
+    except Exception as e:
+        pprint(e)
         raise OrderException('invalid order %s' % order)
 
     quote = {'quote': value}
@@ -35,11 +36,13 @@ def quote():
 
     try:
         order = json.loads(data)
-    except ValueError:
+    except ValueError as e:
+        pprint(e)
         abort(400)
     try:
         quote = get_quote(order)
     except OrderException, e:
+        pprint(e)
         abort(400)
 
     return jsonify(quote)
