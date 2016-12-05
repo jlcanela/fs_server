@@ -21,6 +21,11 @@ def get_quote(order):
     quote = {'quote': value}
     return quote
 
+@app.route("/", methods=['GET'])
+@app.route("/<path:path>", methods=['GET'])
+def index2(path=''):
+    return "hello world"
+
 @app.route('/quote', methods=['POST'])
 def quote():
     data = deepcopy(request.data)
