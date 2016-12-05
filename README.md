@@ -1,12 +1,23 @@
-# install
+Express Client
+==============
 
-```
-pip install flask
-```
+Install
+-------
 
-# manual test
+    npm install
 
-To test curl POST with request.json:
-```
-curl -X POST -d @request.json http://localhost:8080/quote --header "Content-Type:text/json"
-```
+Start
+-----
+
+    PORT=1234 npm start
+
+default port is 3000
+
+Test
+----
+
+    npm test
+
+Implement
+----
+See TODO in `routes.js`
