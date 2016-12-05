@@ -1,0 +1,8 @@
+{
+  "country": "PL",
+  "departureDate": "2016-11-15",
+  "returnDate": "2016-12-09",
+  "travellerAges": [32, 39],
+  "options": ["MedicalConditions"],
+  "cover": "Basic"
+}
