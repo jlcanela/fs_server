@@ -21,7 +21,7 @@ def get_quote(order):
     quote = {'quote': value}
     return quote
 
-@app.route("/", methods=['GET'])
+@app.route("/", methods=['GET', 'POST'])
 @app.route("/<path:path>", methods=['GET'])
 def index2(path=''):
     return "hello world"
