@@ -23,6 +23,12 @@ class OrderException(Exception): pass
 def get_date(date_str):
     return datetime.strptime(date_str, '%Y-%m-%d')
 
+def get_days(days):
+    return 7 if days < 7 else days
+
+def get_age_risks(ages):
+    return 1
+
 def get_quote(order):
     try:
         cover = COVERS[order['cover'].lower()]
@@ -31,11 +37,13 @@ def get_quote(order):
         print 'country:', country
 
         delta = get_date(order['returnDate']) - get_date(order['departureDate'])
-        print 'nb days:', delta.days
+        days = get_days(delta.days)
+        print 'nb days:', days
 
-        print 'nb travelers:', len(order['travellerAges'])
-        ages_sum = sum(order['travellerAges'])
-        value = cover * country * ages_sum * delta.days
+        ages_risk = get_age_risks(order['travellerAges'])
+        print 'ages risk:', ages_risk
+
+        value = cover * country * ages_risk * days
     except Exception, e:
         raise OrderException('invalid order %s: %s' % (order, str(e)))
     return {'quote': value}
@@ -80,7 +88,10 @@ def get_quote(order):
 
 @app.route("/quote", methods=['POST'])
 def quote():
-    quote = request.get_json()
+    try:
+        quote = request.get_json()
+    except Exception, e:
+        print str(e)
 
     print 'raw data:'
     pprint(quote)
