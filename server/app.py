@@ -30,14 +30,19 @@ def index2(path=''):
 
 @app.route('/quote', methods=['POST'])
 def quote():
-    data = request.get_data()
+    # data = request.get_data()
 
-    print 'POST data:'
-    pprint(data)
+    # print 'POST data:'
+    # pprint(data)
 
+    # try:
+    #     order = json.loads(data)
+    # except ValueError, e:
+    #     print str(e)
+    #     abort(400)
     try:
-        order = json.loads(data)
-    except ValueError, e:
+        order = request.get_json()
+    except Exception, e:
         print str(e)
         abort(400)
     try:
